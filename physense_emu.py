@@ -37,7 +37,7 @@ class Sensor:
     def output(led, status):
 
         # Sound the buzzer if requested
-        if led == 'buzzer':
+        if led == 'buzzer' or led == 'buzz':
             playsound('src/buzzer.wav')
             return
 

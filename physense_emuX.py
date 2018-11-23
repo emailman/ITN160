@@ -1,5 +1,4 @@
 from guizero import *
-# from PIL import Image
 
 led_widgets = []
 light_toggle = False
