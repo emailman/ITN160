@@ -71,8 +71,8 @@ def main():
     Slider(app, horizontal=False, start=150, end=-50, align='top',
            width=50, height=200, command=temperature_changed, grid=[7, 4, 1, 7])
 
-    # Refresh the display every 500 ms to update the leds
-    app.repeat(500, led_update)
+    # Refresh the display every 100 ms to update the leds
+    app.repeat(100, led_update)
 
     app.display()
 
