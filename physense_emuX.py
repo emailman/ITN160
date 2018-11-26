@@ -81,6 +81,7 @@ def toggle_light():
     global light_toggle
     file = open('data/light.txt', 'w')
 
+    # Toggle the images between sun and moon
     if light_toggle:
         pb_light.image = LIGHT_IMAGES[0]
         file.write('on')
