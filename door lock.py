@@ -1,10 +1,20 @@
 import physense_emu
 from time import sleep
 
+"""
+This simulates a lock with a four digit code.
+The code is entered using four push buttons.
+Once entered, the blue led is turned on.
+Then, if the user enters the correct code,
+the green led is turned on, if not, the
+red led is turned on.
+When the light is turned off, the program exits. 
+"""
 sensor = physense_emu.Sensor()
 
 
 def get_code():
+    # Return a list of the 4 digit code entered
     code = []
     i = 0
     while i < 4:
@@ -31,15 +41,19 @@ def get_code():
 
 
 def main():
+    # Get the lock code, then turn on the blue led
     lock_code = get_code()
     print('lock code =', lock_code)
     sensor.output('bled', 'on')
 
+    # Loop while waiting for the unlock code
+    # to be entered
     while True:
         if sensor.input('light') == 'on':
             unlock_code = get_code()
             print('unlock code =', unlock_code)
 
+            # Compare the lock code to the unlock code
             if lock_code == unlock_code:
                 print('Unlocked')
                 sensor.output('gled', 'on')
@@ -51,6 +65,7 @@ def main():
                 sleep(2)
                 sensor.output('rled', 'off')
         else:
+            # If the light is off, exit
             sensor.output('bled', 'off')
             break
 
