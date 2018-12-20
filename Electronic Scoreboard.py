@@ -21,22 +21,22 @@ def main():
     global txt_home_win, txt_visitors_win
 
     app = App(title='Score Board Console', height=250, width=280, layout='grid')
-    win = Window(app, title='Score Board', height=120, width=280, layout='grid')
+    win = Window(app, title='Score Board', height=200, width=500, layout='grid')
 
     # Outdoor board
-    Text(win, text=' ' * 20, size=6, grid=[0, 0])
+    Text(win, text=' ' * 20, size=12, grid=[0, 0])
 
-    Text(win, text='BLUE HENS LACROSSE', color='blue', grid=[1, 1, 3, 1])
+    Text(win, text='BLUE HENS LACROSSE', color='blue', size=20, grid=[1, 1, 3, 1])
 
-    Text(win, size=6, grid=[0, 2])
+    Text(win, size=12, grid=[0, 2])
 
-    Text(win, text='HOME', color='green', grid=[1, 3])
-    txt_home_win = Text(win, text='0', color='green', grid=[1, 4])
-    Text(win, size=4, grid=[1, 5])
+    Text(win, text='HOME', color='green', size=20, grid=[1, 3])
+    txt_home_win = Text(win, text='0', color='green', size=20, grid=[1, 4])
+    Text(win, size=8, grid=[1, 5])
 
-    Text(win, text='VISITORS', color='red', grid=[3, 3])
-    txt_visitors_win = Text(win, text='0', color='red', grid=[3, 4])
-    Text(win, size=4, grid=[3, 5])
+    Text(win, text='VISITORS', color='red', size=20, grid=[3, 3])
+    txt_visitors_win = Text(win, text='0', color='red', size=20, grid=[3, 4])
+    Text(win, size=8, grid=[3, 5])
 
     # Console
     Text(app, text=' ' * 20, size=6, grid=[0, 0])
