@@ -40,34 +40,39 @@ def print_time():
     print(time.strftime("%H:%M:%S %p", current_time))
 
 
-def main():
+def snooze():
     global snooze_enabled
 
-    while True:
+    # check if the snooze is enabled
+    if snooze_enabled:
+        # shut the alarm off for 10 seconds
+        for i in range(10):
+            print_time()
+            time.sleep(1)
 
+        # disable the snooze
+        snooze_enabled = False
+
+
+def alarm():
+    # turn on the red LED and alarm if light is on,
+    # alarm is enabled and the snooze is disabled
+    if sensor.input("light") == "on" \
+            and alarm_enabled and not snooze_enabled:
+        sensor.output('rled', 'on')
+        sensor.output("buzz", "play")
+    else:
+        sensor.output('rled', 'off')
+
+
+def main():
+    while True:
         alarm_check()
         snooze_check()
         print_time()
-
-        # turn on the red LED and alarm if light is on,
-        # alarm is enabled and the snooze is disabled
-        if sensor.input("light") == "on" \
-                and alarm_enabled and not snooze_enabled:
-            sensor.output('rled', 'on')
-            sensor.output("buzz", "play")
-        else:
-            time.sleep(1)
-            sensor.output('rled', 'off')
-
-        # check if the snooze is enabled
-        if snooze_enabled:
-            # shut the alarm off for 10 seconds
-            for i in range(10):
-                print_time()
-                time.sleep(1)
-
-            # disable the snooze
-            snooze_enabled = False
+        alarm()
+        snooze()
+        time.sleep(1)
 
 
 main()
